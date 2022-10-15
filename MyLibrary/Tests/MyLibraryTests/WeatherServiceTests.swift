@@ -28,9 +28,29 @@ final class WeatherServiceTests: XCTestCase {
 """.data(using: .utf8)!
         
         //When
-        let isTempDouble = sut.printTemp(weatherData: mockJson)
+        let temp = sut.printTemp(weatherData: mockJson)
         //Then
-        XCTAssertTrue(isTempDouble)
+        XCTAssertEqual(temp, 291.69)
+    }
+    
+    func testWeatherServerResponse() async {
+        //Given
+        let sut = WeatherServiceImpl()
+        let mockTemp = Int(64)
+        //When
+        do{
+            let realTemp = try await sut.getTemperature()
+            //Then
+            XCTAssertEqual(realTemp, mockTemp)
+        }catch{
+            print(error)
+        }
+        
+        
+        
+        
+        
+        
     }
 
 }
