@@ -7,12 +7,11 @@ public protocol WeatherService {
 
 class WeatherServiceImpl: WeatherService {
     enum baseURL: String {
-        case real = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=83f4e16ef4f002b59f12b33ca42a8919"
-        case mock = "http://localhost:3000/data/2.5/weather?q=corvallis&units=imperial&appid=83f4e16ef4f002b59f12b33ca42a8919"
+        case real = "https://api.openweathermap.org"
+        case mock = "http://localhost:3000"
     }
     
-//    let url = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=83f4e16ef4f002b59f12b33ca42a8919"
-    var url = baseURL.real.rawValue
+    let url = "\(baseURL.real.rawValue)/data/2.5/weather?q=corvallis&units=imperial&appid=<appID>"
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: Weather.self) { response in
