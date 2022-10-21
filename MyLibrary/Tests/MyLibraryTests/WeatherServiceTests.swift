@@ -37,7 +37,7 @@ final class WeatherServiceTests: XCTestCase {
         //Given
         let sut = WeatherServiceImpl()
         let mockTemp = Int(298)
-        //When
+        //When 
         do{
             let realTemp = try await sut.getTemperature()
             //Then
