@@ -19,8 +19,11 @@ jobs:
     - name: Run mock server
       uses: actions/setup-node@v3
       with:
+        node-version: '15.x'  
         working-directory: ./myapp
-        run: node index.js & 
+        run: |
+          node index.js & 
+          curl http://localhost:3000/data/2.5/weather
     - name: Build
       working-directory: ./MyLibrary
       run: swift build -v
