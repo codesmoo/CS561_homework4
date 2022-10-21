@@ -23,7 +23,7 @@ jobs:
         working-directory: ./myapp
         run: |
           node index.js & 
-          curl http://localhost:3000/data/2.5/weather
+          curl -X GET "http://localhost:3000/data/2.5/weather"
     - name: Build
       working-directory: ./MyLibrary
       run: swift build -v
