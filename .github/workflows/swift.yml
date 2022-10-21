@@ -16,7 +16,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Run mock server
+      uses: actions/setup-node@v3
+      with:
+        working-directory: ./myapp
+        run: node index.js & 
     - name: Build
-      run: xcodebuild clean build -workspace "cs561.xcworkspace" -scheme "MyLibrary"
+      working-directory: ./MyLibrary
+      run: swift build -v
+      
     - name: Run tests
-      run: xcodebuild clean test -workspace "cs561.xcworkspace" -scheme "MyLibrary"
+      working-directory: ./MyLibrary
+      run: swift test -v
