@@ -16,10 +16,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '15.x'
+    - name: Install dependencies
+      run: |
+        npm install &&
+        npm start &
+      
     - name: Run mock server
       working-directory: ./myapp
       run: |
         node index.js &
+        sleep 1
         curl -X GET "http://localhost:3000/data/2.5/weather"
         
     - name: Build
