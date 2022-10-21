@@ -16,9 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Change directory
-      run: cd MyLibrary
     - name: Build
-      run: swift build -v
+      run: xcodebuild clean build -workspace "cs561.xcworkspace" -scheme "MyLibrary"
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild clean test -workspace "cs561.xcworkspace" -scheme "MyLibrary"
