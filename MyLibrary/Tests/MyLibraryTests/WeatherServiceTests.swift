@@ -17,7 +17,7 @@ final class WeatherServiceTests: XCTestCase {
         let mockJson = """
 {
     "main": {
-          "temp": 290.69,
+          "temp": 290.6,
           "feels_like": 291.51,
           "temp_min": 288.23,
           "temp_max": 293.48,
@@ -30,7 +30,7 @@ final class WeatherServiceTests: XCTestCase {
         //When
         let temp = sut.printTemp(weatherData: mockJson)
         //Then
-        XCTAssertEqual(temp, 290.69)
+        XCTAssertEqual(temp, 290.6)
     }
     
     func testWeatherServerResponse() async {
