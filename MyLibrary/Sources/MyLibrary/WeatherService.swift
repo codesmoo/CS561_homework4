@@ -11,7 +11,7 @@ class WeatherServiceImpl: WeatherService {
         case mock = "http://localhost:3000"
     }
     
-    let url = "\(baseURL.real.rawValue)/data/2.5/weather?q=corvallis&units=imperial&appid=<appID>"
+    let url = "\(baseURL.mock.rawValue)/data/2.5/weather?q=corvallis&units=imperial&appid=954ebc18297e7043b1d715e04170ac75"
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: Weather.self) { response in
