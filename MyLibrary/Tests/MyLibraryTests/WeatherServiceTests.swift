@@ -13,7 +13,8 @@ final class WeatherServiceTests: XCTestCase {
     
     func testWeatherModel() {
         //Given
-        let sut = WeatherServiceImpl()
+        var returnValue = 0.0
+        let decoder = JSONDecoder()
         let mockJson = """
 {
     "main": {
@@ -28,15 +29,23 @@ final class WeatherServiceTests: XCTestCase {
 """.data(using: .utf8)!
         
         //When
-        let temp = sut.printTemp(weatherData: mockJson)
+        
+        do{
+            let tempData = try decoder.decode(Weather.self, from: mockJson)
+            print("temp : \(tempData.main.temp)")
+            returnValue = tempData.main.temp
+        }catch{
+            print(error)
+        }
+        
         //Then
-        XCTAssertEqual(temp, 290.6)
+        XCTAssertEqual(returnValue, 290.6)
     }
     
     func testWeatherServerResponse() async {
         //Given
         let sut = WeatherServiceImpl()
-        let mockTemp = Int(298)
+        let mockTemp = Int(291)
         //When 
         do{
             let realTemp = try await sut.getTemperature()
