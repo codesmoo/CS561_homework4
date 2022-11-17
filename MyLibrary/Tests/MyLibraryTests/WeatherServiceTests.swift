@@ -45,7 +45,7 @@ final class WeatherServiceTests: XCTestCase {
     func testWeatherServerResponse() async {
         //Given
         let sut = WeatherServiceImpl()
-        let mockTemp = Int(291)
+        let mockTemp = Int(298)
         //When 
         do{
             let realTemp = try await sut.getTemperature()
